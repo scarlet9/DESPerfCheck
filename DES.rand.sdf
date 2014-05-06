@@ -141,11 +141,10 @@ sdf DES {
   int F_PlainTextSource -> IntoBits;
   int IntoBits -> doIP;
 
-  int doIP -> SP_DEScoder__1;
+  int doIP -> __split_SP_DEScoder__1 (1);
 
   for (int iter=1:16)
   begin
-    int SP_DEScoder[iter] -> __split_SP_DEScoder[iter] (1);
 
     int __split_SP_DEScoder[iter] (1) -> __split_SP_nextR[iter] (64);
     int __split_SP_DEScoder[iter] (1) -> AnonFilter_a0[iter];
@@ -187,10 +186,10 @@ sdf DES {
     int Xor_nextR[iter] -> __join_SP_DEScoder[iter] (32);
     int AnonFilter_a0[iter] -> __join_SP_DEScoder[iter] (32);
 
-    int __join_SP_DEScoder[iter] (64) -> SP_DEScoder[iter + 1];
+    int __join_SP_DEScoder[iter] (64) -> __split_SP_DEScoder[iter + 1] (1);
   end
 
-  int SP_DEScoder__17 -> CrissCross;
+  int __split_SP_DEScoder__17 (1) -> CrissCross;
   int CrissCross -> doIPm1;
   int doIPm1 -> BitstoInts;
   int BitstoInts -> F_HexPrinter;
@@ -366,235 +365,7 @@ actor doIP {
   }}}
 
   output:
-    SP_DEScoder__1: y[1-64];
-}
-
-actor SP_DEScoder {
-  input:
-    __join_SP_DEScoder: x[1-64];
-
-  firing:
-  {{{
-    @y1 = @x1;
-    @y2 = @x2;
-    @y3 = @x3;
-    @y4 = @x4;
-    @y5 = @x5;
-    @y6 = @x6;
-    @y7 = @x7;
-    @y8 = @x8;
-    @y9 = @x9;
-    @y10 = @x10;
-    @y11 = @x11;
-    @y12 = @x12;
-    @y13 = @x13;
-    @y14 = @x14;
-    @y15 = @x15;
-    @y16 = @x16;
-    @y17 = @x17;
-    @y18 = @x18;
-    @y19 = @x19;
-    @y20 = @x20;
-    @y21 = @x21;
-    @y22 = @x22;
-    @y23 = @x23;
-    @y24 = @x24;
-    @y25 = @x25;
-    @y26 = @x26;
-    @y27 = @x27;
-    @y28 = @x28;
-    @y29 = @x29;
-    @y30 = @x30;
-    @y31 = @x31;
-    @y32 = @x32;
-    @y33 = @x33;
-    @y34 = @x34;
-    @y35 = @x35;
-    @y36 = @x36;
-    @y37 = @x37;
-    @y38 = @x38;
-    @y39 = @x39;
-    @y40 = @x40;
-    @y41 = @x41;
-    @y42 = @x42;
-    @y43 = @x43;
-    @y44 = @x44;
-    @y45 = @x45;
-    @y46 = @x46;
-    @y47 = @x47;
-    @y48 = @x48;
-    @y49 = @x49;
-    @y50 = @x50;
-    @y51 = @x51;
-    @y52 = @x52;
-    @y53 = @x53;
-    @y54 = @x54;
-    @y55 = @x55;
-    @y56 = @x56;
-    @y57 = @x57;
-    @y58 = @x58;
-    @y59 = @x59;
-    @y60 = @x60;
-    @y61 = @x61;
-    @y62 = @x62;
-    @y63 = @x63;
-    @y64 = @x64;
-  }}}
-
-  output:
-    __split_SP_DEScoder: y[1-64];
-}
-
-actor SP_DEScoder__1 {
-  input:
-    doIP: x[1-64];
-
-  firing:
-  {{{
-    @y1 = @x1;
-    @y2 = @x2;
-    @y3 = @x3;
-    @y4 = @x4;
-    @y5 = @x5;
-    @y6 = @x6;
-    @y7 = @x7;
-    @y8 = @x8;
-    @y9 = @x9;
-    @y10 = @x10;
-    @y11 = @x11;
-    @y12 = @x12;
-    @y13 = @x13;
-    @y14 = @x14;
-    @y15 = @x15;
-    @y16 = @x16;
-    @y17 = @x17;
-    @y18 = @x18;
-    @y19 = @x19;
-    @y20 = @x20;
-    @y21 = @x21;
-    @y22 = @x22;
-    @y23 = @x23;
-    @y24 = @x24;
-    @y25 = @x25;
-    @y26 = @x26;
-    @y27 = @x27;
-    @y28 = @x28;
-    @y29 = @x29;
-    @y30 = @x30;
-    @y31 = @x31;
-    @y32 = @x32;
-    @y33 = @x33;
-    @y34 = @x34;
-    @y35 = @x35;
-    @y36 = @x36;
-    @y37 = @x37;
-    @y38 = @x38;
-    @y39 = @x39;
-    @y40 = @x40;
-    @y41 = @x41;
-    @y42 = @x42;
-    @y43 = @x43;
-    @y44 = @x44;
-    @y45 = @x45;
-    @y46 = @x46;
-    @y47 = @x47;
-    @y48 = @x48;
-    @y49 = @x49;
-    @y50 = @x50;
-    @y51 = @x51;
-    @y52 = @x52;
-    @y53 = @x53;
-    @y54 = @x54;
-    @y55 = @x55;
-    @y56 = @x56;
-    @y57 = @x57;
-    @y58 = @x58;
-    @y59 = @x59;
-    @y60 = @x60;
-    @y61 = @x61;
-    @y62 = @x62;
-    @y63 = @x63;
-    @y64 = @x64;
-  }}}
-
-  output:
     __split_SP_DEScoder__1: y[1-64];
-}
-
-actor SP_DEScoder__17 {
-  input:
-    __join_SP_DEScoder__16: x[1-64];
-
-  firing:
-  {{{
-    @y1 = @x1;
-    @y2 = @x2;
-    @y3 = @x3;
-    @y4 = @x4;
-    @y5 = @x5;
-    @y6 = @x6;
-    @y7 = @x7;
-    @y8 = @x8;
-    @y9 = @x9;
-    @y10 = @x10;
-    @y11 = @x11;
-    @y12 = @x12;
-    @y13 = @x13;
-    @y14 = @x14;
-    @y15 = @x15;
-    @y16 = @x16;
-    @y17 = @x17;
-    @y18 = @x18;
-    @y19 = @x19;
-    @y20 = @x20;
-    @y21 = @x21;
-    @y22 = @x22;
-    @y23 = @x23;
-    @y24 = @x24;
-    @y25 = @x25;
-    @y26 = @x26;
-    @y27 = @x27;
-    @y28 = @x28;
-    @y29 = @x29;
-    @y30 = @x30;
-    @y31 = @x31;
-    @y32 = @x32;
-    @y33 = @x33;
-    @y34 = @x34;
-    @y35 = @x35;
-    @y36 = @x36;
-    @y37 = @x37;
-    @y38 = @x38;
-    @y39 = @x39;
-    @y40 = @x40;
-    @y41 = @x41;
-    @y42 = @x42;
-    @y43 = @x43;
-    @y44 = @x44;
-    @y45 = @x45;
-    @y46 = @x46;
-    @y47 = @x47;
-    @y48 = @x48;
-    @y49 = @x49;
-    @y50 = @x50;
-    @y51 = @x51;
-    @y52 = @x52;
-    @y53 = @x53;
-    @y54 = @x54;
-    @y55 = @x55;
-    @y56 = @x56;
-    @y57 = @x57;
-    @y58 = @x58;
-    @y59 = @x59;
-    @y60 = @x60;
-    @y61 = @x61;
-    @y62 = @x62;
-    @y63 = @x63;
-    @y64 = @x64;
-  }}}
-
-  output:
-    CrissCross: y[1-64];
 }
 
 actor doE {
@@ -1132,7 +903,7 @@ actor AnonFilter_a0 {
 
 actor CrissCross {
   input:
-    SP_DEScoder__17: x[1-64];
+    __split_SP_DEScoder__17: x[1-64];
 
   firing:
   {{{
